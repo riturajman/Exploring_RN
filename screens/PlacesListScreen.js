@@ -9,10 +9,6 @@ const PlacesListScreen = props => {
   return (
     <View>
       <Text>PlacesListScreen</Text>
-      <Button
-        title="Go to Map"
-        onPress={() => props.navigation.navigate('NewPlace')}
-      />
     </View>
   );
 };

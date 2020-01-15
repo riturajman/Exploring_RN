@@ -18,16 +18,9 @@ const Navigator = createStackNavigator(
     Map: MapScreen
   },
   {
-      initialRouteName: 'Places'
+    initialRouteName: 'Places',
+    headerMode: 'screen'
   }
-//   {
-//     defaultNavigationOption: {
-//       headerStyle: {
-//         backgroundColor:
-//           Platform.OS === 'android' ? Colors.primary : Colors.secondary
-//       },
-//       headerTintColor:
-//         Platform.OS === 'android' ? Colors.secondary : Colors.primary
-//     }
-//   }
 );
+
+export default createAppContainer(Navigator);

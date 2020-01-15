@@ -1,25 +1,30 @@
-import { Platform } from 'react-native';
+import React from 'react';
 
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import Colors from './constants/colors';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import ReduxThunk from 'redux-thunk';
 
-import PlacesListScreen from './screens/PlacesListScreen'
+import PlacesListScreen from './screens/PlacesListScreen';
 import PlacesDetailScreen from './screens/PlacesDetailScreen';
 import NewScreen from './screens/NewPlaceScreen';
 import MapScreen from './screens/MapScreen';
 
-const Navigator = createStackNavigator(
-  {
-    Places: PlacesListScreen,
-    PlaceDetail: PlacesDetailScreen,
-    NewPlace: NewScreen,
-    Map: MapScreen
-  },
-  {
-      initialRouteName: 'Places',
-      headerMode: 'screen'
-  }
-);
-export default createAppContainer(Navigator)
+import placesReducer from './store/placeReducer';
+const rootReducer = combineReducers({
+  places: placesReducer
+});
+
+import NavigationScreen from './navigation/index';
+
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
+
+export default function App() {
+  return (
+    <Provider store={store}>
+      <NavigationScreen />
+    </Provider>
+  );
+}
