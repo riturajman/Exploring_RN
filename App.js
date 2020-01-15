@@ -1,24 +1,25 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import {combineReducers} from 'redux'
+import { Platform } from 'react-native';
 
-//Exploring device features with this app
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-export default function App() {
+import Colors from './constants/colors';
 
-  console.log('listening on port')
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your App!</Text>
-    </View>
-  );
-}
+import PlacesListScreen from './screens/PlacesListScreen'
+import PlacesDetailScreen from './screens/PlacesDetailScreen';
+import NewScreen from './screens/NewPlaceScreen';
+import MapScreen from './screens/MapScreen';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const Navigator = createStackNavigator(
+  {
+    Places: PlacesListScreen,
+    PlaceDetail: PlacesDetailScreen,
+    NewPlace: NewScreen,
+    Map: MapScreen
   },
-});
+  {
+      initialRouteName: 'Places',
+      headerMode: 'screen'
+  }
+);
+export default createAppContainer(Navigator)
