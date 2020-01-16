@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import ImgPicker from './imagePicker';
+
 
 const MapPreview = props => {
   const key = 'AIzaSyCWTieu63_Ah39eN_M40id9gvqEanJqj4g';
@@ -10,9 +11,9 @@ const MapPreview = props => {
     imagePreviewUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${props.location.lat},${props.location.lan}&zoom=14&size=400x200&maptype=roadmap&markers=color:red%7Clabel:A%7C${props.location.lat},${props.location.lan}&key=${key}`;
   }
   return (
-    <View style={{ ...styles.mapPreview, ...props.style }}>
+    <TouchableOpacity onPress={props.handleMapPress} style={{ ...styles.mapPreview, ...props.style }}>
       {props.location ? <Image style={styles.mapImage} source={{uri: imagePreviewUrl}}/> : props.children}
-    </View>
+    </TouchableOpacity>
   );
 };
 

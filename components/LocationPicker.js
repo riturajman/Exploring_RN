@@ -53,6 +53,17 @@ const LocationPicker = props => {
     setIsFetching(false);
   };
 
+//   pickOnMapHandler = () => {
+//     props.setNav({
+//       lat: location.coords.latitude,
+//       lan: location.coords.longitude
+//     });
+//   };
+
+ const pickOnMapHandler = ()=>{
+    props.navigation.navigate('Map')
+  }
+
   return (
     <View style={styles.locaionPicker}>
       <MapPreviewScreen style={styles.mapPreview} location={pickedLocation}>
@@ -67,6 +78,7 @@ const LocationPicker = props => {
         color="black"
         onPress={getLocationHandler}
       />
+      <Button title="Pick on app" color="black" onPress={pickOnMapHandler} />
     </View>
   );
 };

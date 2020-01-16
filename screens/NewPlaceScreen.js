@@ -22,6 +22,11 @@ export default NewPlaceScreen = props => {
 
   const [titleValue, setTitleValue] = useState('');
   const [selectedImage, setSelectedImage] = useState();
+  const [navigation, setNavigation] = useState();
+
+  const setNav = location => {
+    setNavigation(location);
+  };
 
   const imageTakenHandler = imgPath => {
     setSelectedImage(imgPath);
@@ -47,7 +52,7 @@ export default NewPlaceScreen = props => {
           keyboardType="default"
         />
         <ImagePicker imageTakenHandler={imageTakenHandler} />
-        <LocationPicker />
+        <LocationPicker navigation={props.navigation} />
         <Button title="Save Place" color="black" onPress={savePlaceHandler} />
       </View>
     </ScrollView>
