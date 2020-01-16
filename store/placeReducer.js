@@ -1,7 +1,22 @@
-const initialState = {
-    place : []
-}
+import { ADD_PLACE } from './placeAction';
+import Place from '../models/places';
 
-export default(state = initialState, action) => {
-    return state
-}
+const initialState = {
+  places: []
+};
+
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case ADD_PLACE:
+      const newPlace = new Place(
+        new Date().toString(),
+        action.placeData.title,
+        action.placeData.image
+      );
+      return {
+        places: [...state.places, newPlace]
+      };
+    default:
+      return state;
+  }
+};

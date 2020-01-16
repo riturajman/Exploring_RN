@@ -18,6 +18,15 @@ const rootReducer = combineReducers({
 });
 
 import NavigationScreen from './navigation/index';
+import { init } from './helpers/db';
+
+init()
+  .then(() => {
+    console.log('DB connected');
+  })
+  .catch(err => {
+    console.log(err);
+  });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
