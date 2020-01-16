@@ -12,6 +12,8 @@ import {
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 
+import MapPreviewScreen from './MapPreview';
+
 const LocationPicker = props => {
   const [isFetching, setIsFetching] = useState(false);
   const [pickedLocation, setPickedLocation] = useState();
@@ -41,22 +43,25 @@ const LocationPicker = props => {
         timeout: 5000
       });
       console.log(location);
-      setPickedLocation(null);
+      setPickedLocation({
+        lat: location.coords.latitude,
+        lan: location.coords.longitude
+      });
     } catch (error) {
       Alert.alert('Could not fetch location', 'Try again', [{ text: 'Okay' }]);
     }
-    setIsFetching(false)
+    setIsFetching(false);
   };
 
   return (
     <View style={styles.locaionPicker}>
-      <View style={styles.mapPreview}>
+      <MapPreviewScreen style={styles.mapPreview} location={pickedLocation}>
         {isFetching ? (
           <ActivityIndicator size="large" color="green" />
         ) : (
           <Text>No Location Selected!</Text>
         )}
-      </View>
+      </MapPreviewScreen>
       <Button
         title="Press for location"
         color="black"
