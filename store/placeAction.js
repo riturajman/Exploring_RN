@@ -40,7 +40,7 @@ export const loadPlaces = () => {
     try {
       const dbResult = await fetchPlace();
       console.log(dbResult);
-      dispatch({ type: SET_PLACES, places: [] });
+      dispatch({ type: SET_PLACES, places: dbResult.rows._array });
     } catch (err) {}
   };
 };
