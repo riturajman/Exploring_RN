@@ -15,6 +15,7 @@ import { useDispatch } from 'react-redux';
 import * as placeActions from '../store/placeAction';
 
 import ImagePicker from '../components/imagePicker';
+import LocationPicker from '../components/LocationPicker';
 
 export default NewPlaceScreen = props => {
   const dispatch = useDispatch();
@@ -45,8 +46,9 @@ export default NewPlaceScreen = props => {
           value={titleValue}
           keyboardType="default"
         />
-        <Button title="Save Place" color="black" onPress={savePlaceHandler} />
         <ImagePicker imageTakenHandler={imageTakenHandler} />
+        <LocationPicker />
+        <Button title="Save Place" color="black" onPress={savePlaceHandler} />
       </View>
     </ScrollView>
   );
